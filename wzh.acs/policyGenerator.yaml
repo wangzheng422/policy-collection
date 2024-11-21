@@ -1,9 +1,9 @@
 apiVersion: policy.open-cluster-management.io/v1
 kind: PolicyGenerator
 metadata:
-  name: policy-openshift-plus
+  name: policy-openshift-acs
 placementBindingDefaults:
-  name: binding-policy-openshift-plus-hub
+  name: binding-policy-openshift-acs-hub
 policyDefaults:
   categories:
     - CM Configuration Management
@@ -11,7 +11,7 @@ policyDefaults:
     - CM-2 Baseline Configuration
   namespace: policies
   policySets:
-    - openshift-plus-hub
+    - openshift-acs-hub
   remediationAction: enforce
   severity: medium
   standards:
@@ -99,7 +99,7 @@ policies:
   manifests:
     - path: input-sensor/policy-advanced-managed-cluster-security.yaml
   policySets:
-    - openshift-plus-clusters
+    - openshift-acs-clusters
 - name: policy-advanced-managed-cluster-status
   categories:
     - SI System and Information Integrity
@@ -108,8 +108,8 @@ policies:
   manifests:
     - path: input-sensor/policy-advanced-managed-cluster-status.yaml
   policySets:
-    - openshift-plus-hub
-    - openshift-plus-clusters
+    - openshift-acs-hub
+    - openshift-acs-clusters
   remediationAction: inform
 # ACS Policies - end
 # Observability Policy - start
@@ -214,7 +214,7 @@ policies:
     - path: input-quay/policy-quay-bridge.yaml
   orderManifests: true
   policySets:
-    - openshift-plus-clusters
+    - openshift-acs-clusters
 # Quay Policies - end
 # Compliance Operator Policies - start
 - name: policy-compliance-operator-install
@@ -226,21 +226,21 @@ policies:
   manifests:
     - path: input-compliance/
   policySets:
-    - openshift-plus-clusters
-    - openshift-plus-hub
+    - openshift-acs-clusters
+    - openshift-acs-hub
 # Compliance Operator Policies - end
 policySets:
   - description: The OpenShift Platform Plus policy set applies several policies
       that will install the OpenShift Platform Plus products using best practices
       that allow them to work well together. This policy set is focused on 
       the components that install to the Advanced Cluster Management hub.
-    name: openshift-plus-hub
+    name: openshift-acs-hub
     placement:
       placementPath: input/hub-placement.yaml
   - description: The OpenShift Platform Plus policy set applies several policies
       that install the OpenShift Platform Plus products using best practices
       that allow them to work well together. This policy set is focused on 
       the components that install to every managed cluster.
-    name: openshift-plus-clusters
+    name: openshift-acs-clusters
     placement:
       placementPath: input/clusters-placement.yaml
